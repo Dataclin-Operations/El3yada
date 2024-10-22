@@ -161,7 +161,7 @@ def pie_chart_gender(df):
                 font=dict(
                     size=16,  # Font size of the legend title
                     family='Arial',  # Font family
-                    color='black',  # Font color
+                    color='#008080',  # Font color
                     weight='bold'  # Make the font bold
                 )
             ),
