@@ -102,6 +102,8 @@ if __name__ == "__main__":
             if st.button("⚡"):
                 fetch_data.clear()
                 st.rerun()
+        with col2:
+            st.markdown(f'<h2 style="color: firebrick; text-align: center">Welcome {st.session_state["name"]}</h2>', unsafe_allow_html=True)
         df = pd.DataFrame(fetch_data("patients"))
         st.session_state["patients_df"] = df
         selected_rows = aggrid_dis(df, "All Patients Information", "", "single")
