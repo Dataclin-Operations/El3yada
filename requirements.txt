@@ -10,3 +10,4 @@ streamlit_extras
 streamlit_option_menu
 streamlit_phone_number
 supabase
+streamlit-aggrid
