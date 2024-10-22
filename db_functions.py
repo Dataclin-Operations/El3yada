@@ -659,7 +659,8 @@ def bar_chart(df, xx, yy,  txt="", labls={},hover={}, colors=[], height=600, wid
                 font=dict(
                     size=legfontsize,  # Font size of the legend title
                     family='Arial',  # Font family
-                    weight='bold'  # Make the font bold
+                    weight='bold',  # Make the font bold
+                  color='#008080'
                 )
             ),
             plot_bgcolor=None,  #background color
