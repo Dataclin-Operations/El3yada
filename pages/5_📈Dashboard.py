@@ -208,7 +208,7 @@ def line_chart(df):
     # grouped_dates = grouped_dates.sort_values("Date")
     # st.write(grouped_dates)
 
-    fig = px.line(grouped_data, x='Date', y='Count',color="Disease", markers=True, )#, labels={'value': 'Value'})
+    fig = px.line(grouped_data, x='Date', y='Count',color="Disease", markers=True,colors =['#008294','#4D4D4D'] )#, labels={'value': 'Value'})
     
     
 #     fig.update_traces(
