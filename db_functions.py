@@ -226,8 +226,6 @@ def aggrid_dis(data, label, sublabel, selection="single"):
 #                          Other Functions
 #==========================================================================#
 
-@st.cache_data(persist=True)
-
 
     
 
