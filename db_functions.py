@@ -67,35 +67,11 @@ def fetch_name(id):
     response = supabase.from_("patients").select("name").eq("patient_id", id).execute()
     return response.data[0]["name"]
 
-@st.cache_resource
-def fetch_project(project_id):
-    response = supabase.table("projects").select("*").eq("id", project_id).execute()
-    return response.data
-
-
-# function to add new project 
-def add_project(project_name):
-    response = supabase.table("projects").insert({
-        "name": project_name,
-    }).execute()
-    return response.data
-
-
-
-# function to update exsiting project 
-def update_project(project_name, project_id):
-    response = supabase.table('patients').update({'name': project_name}).eq('id', project_id).execute()
-    return response.data
-
-# function to Delete exsiting project 
-def delete_project(project_id):
-    response = supabase.table('projects').delete().eq('id', project_id).execute()
-    return response.data
-
 
 
 
 # function to add new Tasks 
+
 def add_patient(name, gender, age, birth_date, primary_phone_number, secondary_phone_number, address, emergency_phone_number,
                 emergency_name, email, marital_status , notes
                 ):
@@ -114,6 +90,7 @@ def add_patient(name, gender, age, birth_date, primary_phone_number, secondary_p
         "notes": notes
     }).execute()
     #return response.data
+
 
 def add_blood_test(patient_id, test_date,test_name,test_results):
     response = supabase.table("blood_test").insert({
@@ -210,7 +187,7 @@ def make_states():
 
 
 
-
+@st.fragment(run_every="10m")
 def aggrid_dis(data, label, sublabel, selection="single"):
     colored_header(
     label=label,
@@ -249,132 +226,12 @@ def aggrid_dis(data, label, sublabel, selection="single"):
 #                          Other Functions
 #==========================================================================#
 
-
-
-def convert_to_title(df):
-    str_cols = df.select_dtypes(include=['object']).columns
-    df[str_cols] = df[str_cols].apply(lambda x: x.title() if isinstance(x, str) else x)
-    return df
-
-
-
-
-
-
-
 @st.cache_data(persist=True)
-def df_to_dic(df):
-    my_dict = dict(zip(df.iloc[:, 0], df.iloc[:, 1]))
-    return my_dict
-
-def map_df(df, columns, dic):
-    for col in columns:
-        df[col] = df[col].map(dic)
-    return df
-
-
-
-
-@st.cache_data(persist=True)
-def get_tasks():
-    tasks = fetch_data("tasks")
-    global tasks_df
-    tasks_df = pd.DataFrame(tasks).sort_values(by="id")
-    # st.session_state["tasks_df"] = tasks_df
-    return tasks_df
-
-@st.cache_data(persist=True)
-def get_employees():
-    employees = fetch_data("employees")
-    global employees_df
-    employees_df = pd.DataFrame(employees).sort_values(by="id")
-    # st.session_state["employees_df"] = employees_df
-    return employees_df
 
 
     
 
-@st.cache_data(persist=True)
-def get_projects():
-    projects = fetch_data("projects")
-    global projects_df
-    projects_df = pd.DataFrame(projects).sort_values(by="id")
-    # st.session_state["projects_df"] = projects_df
-    return projects_df
 
-
-@st.cache_data(persist=True)
-def get_milestones():
-    milestones = fetch_data("milestones")
-    global milestones_df
-    milestones_df = pd.DataFrame(milestones).sort_values(by="id")
-    # st.session_state["milestones_df"] = milestones_df
-    return milestones_df
-
-
-@st.cache_data(persist=True)
-def get_skills():
-    skills = fetch_data("skills")
-    global skills_df
-    skills_df = pd.DataFrame(skills).sort_values(by="id")
-    # st.session_state["skills_df"] = skills_df
-    return skills_df
-
-
-@st.cache_data(persist=True)
-def get_employee_skills():
-    employee_skills = fetch_data("employeeskills")
-    global employee_skills_df
-    employee_skills_df = pd.DataFrame(employee_skills).sort_values(by="employee_id")
-    # st.session_state["employee_skills_df"] = employee_skills_df
-    return employee_skills_df
-
-
-
-
-@st.cache_data(persist=True)
-def get_edited_task(emp_df, pro_df, task):
-
-    global employees_dic
-    global projects_dic
-    employees_dic = df_to_dic(employees_df[["id", "name"]])
-    projects_dic = df_to_dic(projects_df)
-
-    edited_tasks_df = tasks_df.copy()
-    edited_tasks_df = map_df(edited_tasks_df, ["assigned_to", "employee_to_review", "task_owner", "created_by"], employees_dic)
-    edited_tasks_df = map_df(edited_tasks_df, ["project_id"], projects_dic)
-    edited_tasks_df.rename(columns={
-        'project_id': 'project', 
-        'task_name': 'task'
-          }, inplace=True)
-    
-    edited_tasks_df = edited_tasks_df.sort_values(by="id")
-    # st.session_state["edited_tasks_df"] = edited_tasks_df
-    return edited_tasks_df, 
- 
-
-
-
-@st.cache_data(persist=True)
-def get_edited_task2(emp_df, pro_df, task):
-
-    global employees_dic
-    global projects_dic
-    employees_dic = df_to_dic(emp_df[["id", "name"]])
-    projects_dic = df_to_dic(pro_df)
-
-    edited_tasks_df = task.copy()
-    edited_tasks_df = map_df(edited_tasks_df, ["assigned_to", "employee_to_review", "task_owner", "created_by"], employees_dic)
-    edited_tasks_df = map_df(edited_tasks_df, ["project_id"], projects_dic)
-    edited_tasks_df.rename(columns={
-        'project_id': 'project', 
-        'task_name': 'task'
-          }, inplace=True)
-    
-    edited_tasks_df = edited_tasks_df.sort_values(by="id")
-    # st.session_state["edited_tasks_df"] = edited_tasks_df
-    return edited_tasks_df, 
- 
 
 
 normal_ranges = {
