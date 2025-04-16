@@ -645,8 +645,13 @@ def bar_chart(df, xx, yy,  txt="", labls={},hover={}, colors=[], height=600, wid
                          zeroline=True,
                          showline=True,  # Show y-axis line
                          linecolor='gray',  # Color of the y-axis line
-                         titlefont_size=16,  # Set the title font size (optional)
-                         titlefont_color="#008080",  # Set the title font color (optional)         )
+                         #titlefont_size=16,  # Set the title font size (optional)
+                         #titlefont_color="#008080",  # Set the title font color (optional)         )
+                          title_font=dict(         # ✅ Correct way to style title font
+                                        size=14,
+                                        color="black",
+                                        family='Arial'
+                                    ),
                          tickfont=dict(
                                         size=12,
                                         family='Arial'
@@ -674,8 +679,13 @@ def bar_chart(df, xx, yy,  txt="", labls={},hover={}, colors=[], height=600, wid
         fig.update_yaxes(title_text=ytitle, # Y axisTitle
                          showline=True,  # Show y-axis line
                          linecolor='gray',  # Color of the y-axis line
-                         titlefont_size=18,  # Set the title font size (optional)
-                        titlefont_color="#008080",  # Set the title font color (optional)         )
+                         #titlefont_size=18,  # Set the title font size (optional)
+                        #titlefont_color="#008080",  # Set the title font color (optional)         )
+                          title_font=dict(         # ✅ Correct way to style title font
+                                        size=14,
+                                        color="black",
+                                        family='Arial'
+                                    ),
                          tickfont=dict(
                                         size=12,
                                         family='Arial'
