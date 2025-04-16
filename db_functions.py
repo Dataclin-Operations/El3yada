@@ -698,7 +698,7 @@ def bar_chart(df, xx, yy,  txt="", labls={},hover={}, colors=[], height=600, wid
             bargroupgap=bgg, 
 
             title={'text': ttle, 'y': 0.95, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'}, #title center and size
-            title_font_size=20,  # Title font size,
+            #title_font_size=20,  # Title font size,
             title_xanchor='center',
             margin=dict(t=100) ,
             showlegend=showleg,
