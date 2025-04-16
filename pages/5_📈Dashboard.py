@@ -251,9 +251,14 @@ def line_chart(df):
                         #  zeroline=True,
                          showline=True,  # Show y-axis line
                          linecolor='gray',  # Color of the y-axis line
-                         titlefont_size=18,  # Set the title font size (optional)
-                         titlefont_color="#008080",  # Set the title font color (optional)         )
-                         tickfont=dict(
+                         #titlefont_size=18,  # Set the title font size (optional)
+                         #titlefont_color="#008080",  # Set the title font color (optional)         )
+                     title_font=dict(         # ✅ Correct way to style title font
+                              size=18,
+                              color="#008080",
+                              family='Arial'
+                          ),    
+                     tickfont=dict(
                                         size=12,
                                         family='Arial'
                                     ),
