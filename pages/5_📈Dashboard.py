@@ -259,6 +259,8 @@ def line_chart(df):
                                     ),
                         matches='y'  # Ensure the y-axis settings apply to all facets
                         )
+    if not xtitle:
+      xtitle = "X Axis"
     fig.update_xaxes(title_text="Date", # Y axisTitle
                         showline=True,  # Show y-axis line
                     linecolor='gray',
