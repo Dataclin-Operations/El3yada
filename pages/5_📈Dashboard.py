@@ -259,19 +259,32 @@ def line_chart(df):
                                     ),
                         matches='y'  # Ensure the y-axis settings apply to all facets
                         )
-    if not xtitle:
-      xtitle = "X Axis"
-    fig.update_xaxes(title_text="Date", # Y axisTitle
-                        showline=True,  # Show y-axis line
-                    linecolor='gray',
-                    titlefont_size=18,  # Set the title font size (optional)
-                    titlefont_color="#008080",  # Set the title font color (optional)
-                        tickfont=dict(
-                                    size=12,
-                                    family='Arial'
-                                ),
-                        matches='x'
-                        )
+    fig.update_xaxes(
+    title_text="Date",  # X axis title
+    showline=True,      # Show x-axis line
+    linecolor='gray',
+    title_font=dict(    # ✅ Correct way to set font for the title
+        size=18,
+        color="#008080",
+        family='Arial'
+    ),
+    tickfont=dict(
+        size=12,
+        family='Arial'
+    ),
+    matches='x'
+)
+    # fig.update_xaxes(title_text="Date", # Y axisTitle
+    #                     showline=True,  # Show y-axis line
+    #                 linecolor='gray',
+    #                 titlefont_size=18,  # Set the title font size (optional)
+    #                 titlefont_color="#008080",  # Set the title font color (optional)
+    #                     tickfont=dict(
+    #                                 size=12,
+    #                                 family='Arial'
+    #                             ),
+    #                     matches='x'
+    #                     )
 
     
     
